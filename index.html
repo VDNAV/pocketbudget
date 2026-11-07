@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,interactive-widget=resizes-content">
+  <meta name="theme-color" content="#fff6dc">
+  <meta name="color-scheme" content="light">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="PocketBudget">
+  <title>PocketBudget</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon-192.png">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="page-dashboard">
+
+<aside class="side-nav" aria-label="Main navigation">
+  <a class="brand side-brand" href="#/"><span class="brand-mark" data-icon="wallet:18"></span><span>PocketBudget</span></a>
+  <a class="btn primary side-scan" href="#/scan"><span data-icon="camera:20"></span> Scan receipt</a>
+  <nav class="side-links">
+    <a href="#/" data-nav="dashboard"><span data-icon="home:20"></span><span>Home</span></a>
+    <a href="#/history" data-nav="transactions edit"><span data-icon="receipt:20"></span><span>History</span></a>
+    <a href="#/budgets" data-nav="budgets"><span data-icon="target:20"></span><span>Budgets</span></a>
+  </nav>
+  <div class="side-label">Add</div>
+  <nav class="side-links">
+    <a href="#/quick" data-nav="quick"><span data-icon="zap:20"></span><span>Quick expense</span></a>
+    <a href="#/add" data-nav="add"><span data-icon="pencil:20"></span><span>Full entry</span></a>
+    <a href="#/income" data-nav="income"><span data-icon="income:20"></span><span>Income</span></a>
+  </nav>
+  <div class="side-spacer"></div>
+  <nav class="side-links">
+    <a href="#/settings" data-nav="settings"><span data-icon="settings:20"></span><span>Sync &amp; settings</span><span class="sync-dot" data-sync-dot></span></a>
+  </nav>
+</aside>
+
+<header class="topbar" id="topbar"><div class="topbar-inner" id="topbar-inner"></div></header>
+<div class="offline-bar" id="offline-bar" hidden><span data-icon="cloud-off:16"></span> Offline — everything still works and will sync later</div>
+<div class="toasts" aria-live="polite"></div>
+
+<main class="container" id="app"><div class="boot"><span class="spinner"></span></div></main>
+
+<nav class="bottom-nav" aria-label="Main navigation">
+  <a href="#/" data-nav="dashboard"><span data-icon="home:22"></span><span>Home</span></a>
+  <a href="#/history" data-nav="transactions edit"><span data-icon="receipt:22"></span><span>History</span></a>
+  <a href="#/scan" class="nav-fab" data-nav="scan review" aria-label="Scan receipt"><span class="fab" data-icon="camera:24"></span><span>Scan</span></a>
+  <a href="#/quick" data-nav="quick add income"><span data-icon="zap:22"></span><span>Add</span></a>
+  <a href="#/budgets" data-nav="budgets"><span data-icon="target:22"></span><span>Budgets</span></a>
+</nav>
+
+<div class="sheet-backdrop" id="sheet" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title">
+    <div class="sheet-grip"></div>
+    <h3 id="sheet-title">Are you sure?</h3>
+    <p id="sheet-text"></p>
+    <div class="sheet-actions">
+      <button type="button" class="btn" id="sheet-cancel">Cancel</button>
+      <button type="button" class="btn danger" id="sheet-ok">Confirm</button>
+    </div>
+  </div>
+</div>
+<div class="busy" id="busy" hidden><div class="busy-card"><span class="spinner"></span><strong id="busy-text">Working…</strong><small id="busy-sub"></small></div></div>
+
+<noscript><p style="padding:20px">PocketBudget needs JavaScript turned on.</p></noscript>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
