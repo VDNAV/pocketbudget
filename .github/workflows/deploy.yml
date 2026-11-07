@@ -1,0 +1,70 @@
+# Publishes PocketBudget to GitHub Pages (free https hosting) every time you upload changes.
+# It also bundles the receipt reader (Tesseract) and the fonts into the app so they work offline.
+name: Publish PocketBudget
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Download receipt reader and fonts
+        run: |
+          mkdir -p /tmp/vendor && cd /tmp/vendor
+          npm init -y >/dev/null
+          npm install --no-audit --no-fund tesseract.js@5.1.1 @tesseract.js-data/eng@1 @fontsource/archivo-black@5 @fontsource/space-grotesk@5
+
+      - name: Assemble site
+        run: |
+          set -e
+          mkdir -p _site
+          for f in *; do
+            case "$f" in _site|deploy.yml|export_for_v4.py|supabase_setup.sql|SETUP.md) ;; *) cp -r "$f" _site/ ;; esac
+          done
+          V=_site/vendor
+          mkdir -p $V/tesseract $V/tesseract-core $V/lang $V/fonts
+          N=/tmp/vendor/node_modules
+          cp $N/tesseract.js/dist/tesseract.min.js $N/tesseract.js/dist/worker.min.js $V/tesseract/
+          cp $N/tesseract.js-core/*.wasm.js $V/tesseract-core/
+          cp $N/@tesseract.js-data/eng/4.0.0_best_int/eng.traineddata.gz $V/lang/
+          for f in archivo-black-latin-400-normal; do cp $N/@fontsource/archivo-black/files/$f.woff2 $V/fonts/; done
+          for w in 500 600 700; do cp $N/@fontsource/space-grotesk/files/space-grotesk-latin-$w-normal.woff2 $V/fonts/; done
+          # New version id so phones pick up the update
+          sed -i "s/const VERSION = '[^']*'/const VERSION = 'pb-${GITHUB_SHA::8}'/" _site/sw.js
+          touch _site/.nojekyll
+          echo "Bundled files:"; find $V -type f | sed 's/^/  /'
+          for f in $V/tesseract/tesseract.min.js $V/tesseract/worker.min.js $V/lang/eng.traineddata.gz $V/tesseract-core/tesseract-core-simd-lstm.wasm.js; do
+            test -s "$f" || { echo "Missing $f"; exit 1; }
+          done
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
