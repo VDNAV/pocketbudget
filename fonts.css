@@ -1,5 +1,5 @@
 /* Fonts are bundled with the app (copied into vendor/fonts when published) so they work offline. */
-@font-face{font-family:"Archivo Black";font-style:normal;font-weight:400;font-display:swap;src:url(../vendor/fonts/archivo-black-latin-400-normal.woff2) format("woff2")}
-@font-face{font-family:"Space Grotesk";font-style:normal;font-weight:500;font-display:swap;src:url(../vendor/fonts/space-grotesk-latin-500-normal.woff2) format("woff2")}
-@font-face{font-family:"Space Grotesk";font-style:normal;font-weight:600;font-display:swap;src:url(../vendor/fonts/space-grotesk-latin-600-normal.woff2) format("woff2")}
-@font-face{font-family:"Space Grotesk";font-style:normal;font-weight:700;font-display:swap;src:url(../vendor/fonts/space-grotesk-latin-700-normal.woff2) format("woff2")}
+@font-face{font-family:"Archivo Black";font-style:normal;font-weight:400;font-display:swap;src:url(vendor/fonts/archivo-black-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Space Grotesk";font-style:normal;font-weight:500;font-display:swap;src:url(vendor/fonts/space-grotesk-latin-500-normal.woff2) format("woff2")}
+@font-face{font-family:"Space Grotesk";font-style:normal;font-weight:600;font-display:swap;src:url(vendor/fonts/space-grotesk-latin-600-normal.woff2) format("woff2")}
+@font-face{font-family:"Space Grotesk";font-style:normal;font-weight:700;font-display:swap;src:url(vendor/fonts/space-grotesk-latin-700-normal.woff2) format("woff2")}

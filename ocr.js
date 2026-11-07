@@ -3,7 +3,7 @@
 // so they are served from the app itself and cached for offline use.
 import { parseReceiptText, scoreOcrText } from './parser.js';
 
-const BASE = new URL('../vendor/', import.meta.url).href;
+const BASE = new URL('./vendor/', import.meta.url).href;
 const PATHS = {
   script: BASE + 'tesseract/tesseract.min.js',
   worker: BASE + 'tesseract/worker.min.js',

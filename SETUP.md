@@ -10,7 +10,7 @@ Your old app and `budget.db` are not touched. Keep them as a backup.
 ## 1. Supabase (where your data syncs)
 
 1. Sign in at **supabase.com** and open your **PocketBudget** project.
-2. Left menu → **SQL Editor** → **New query**. Open `tools/supabase_setup.sql` from this folder, paste everything, press **Run**. You should see *Success*.
+2. Left menu → **SQL Editor** → **New query**. Open `supabase_setup.sql` from this folder, paste everything, press **Run**. You should see *Success*.
 3. Left menu → **Authentication** → **Users** → **Add user** → **Create new user**. Enter your email and a password, tick **Auto Confirm User**, then save. This is the login for your phone and laptop.
 4. **Authentication** → **Sign In / Providers** → turn **off** “Allow new users to sign up”, so nobody else can create an account in your project.
 5. Your Project URL and publishable key are already built into the app, so there's nothing to copy.
@@ -19,15 +19,15 @@ Your old app and `budget.db` are not touched. Keep them as a backup.
 
 1. Sign in at **github.com** → **+** (top right) → **New repository**.
    Name: `pocketbudget` · **Public** (free GitHub Pages needs public; this is only the app code, never your data) → **Create repository**.
-2. On the empty repo page click **uploading an existing file**. Open this `pocketbudget` folder on your laptop, select **everything inside it**, including the `.github` folder, and drag it into the page. Press **Commit changes**.
-   - Check the repo now shows a `.github` folder. If it doesn't, click **Add file → Create new file**, name it `.github/workflows/deploy.yml`, paste the contents of that file, and commit.
+2. On the repo page click **Add file → Upload files**. Select **all the files** in this folder (they're all at the top level) and drag them in. Press **Commit changes**.
+   Then create the publishing file: **Add file → Create new file**, type the name `.github/workflows/deploy.yml` (the slashes create the folders), paste the contents of `deploy.yml`, and press **Commit changes**.
 3. Repo → **Settings** → **Pages** → under *Build and deployment* set **Source: GitHub Actions**.
 4. Repo → **Actions** tab. Wait until “Publish PocketBudget” shows a green tick (1–2 minutes).
    Your app is now at **https://YOUR-USERNAME.github.io/pocketbudget/**
 
 ## 3. Bring your existing data across (laptop, once)
 
-1. Copy `tools/export_for_v4.py` into your old app folder (the one with `budget.db`).
+1. Copy `export_for_v4.py` into your old app folder (the one with `budget.db`).
 2. In that folder, in PowerShell:
    ```powershell
    .\.venv\Scripts\Activate.ps1

@@ -36,7 +36,9 @@ jobs:
         run: |
           set -e
           mkdir -p _site
-          rsync -a --exclude '.git' --exclude '.github' --exclude '_site' --exclude 'tools' ./ _site/
+          for f in *; do
+            case "$f" in _site|deploy.yml|export_for_v4.py|supabase_setup.sql|SETUP.md) ;; *) cp -r "$f" _site/ ;; esac
+          done
           V=_site/vendor
           mkdir -p $V/tesseract $V/tesseract-core $V/lang $V/fonts
           N=/tmp/vendor/node_modules

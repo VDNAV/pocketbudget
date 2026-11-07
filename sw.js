@@ -3,9 +3,9 @@
 // Receipt reader + fonts (vendor/): cached the first time they're used.
 const VERSION = 'pb-v4.0.0';
 const SHELL = [
-  './', './index.html', './manifest.webmanifest', './css/styles.css', './css/fonts.css',
-  './js/main.js', './js/views.js', './js/ui.js', './js/icons.js', './js/logic.js', './js/db.js', './js/sync.js', './js/parser.js', './js/ocr.js',
-  './icons/icon-192.png', './icons/icon-512.png',
+  './', './index.html', './manifest.webmanifest', './styles.css', './fonts.css',
+  './main.js', './views.js', './ui.js', './icons.js', './logic.js', './db.js', './sync.js', './parser.js', './ocr.js',
+  './icon-192.png', './icon-512.png',
 ];
 const FONTS = ['archivo-black-latin-400-normal', 'space-grotesk-latin-500-normal', 'space-grotesk-latin-600-normal', 'space-grotesk-latin-700-normal']
   .map(f => `./vendor/fonts/${f}.woff2`);
